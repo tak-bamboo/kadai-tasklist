@@ -1,11 +1,11 @@
 class TasksController < ApplicationController
-  before_action :correct_user, only: [:edit, :show, :update, :destroy]
   before_action :require_user_logged_in, only: [:index, :show]
+  before_action :correct_user, only: [:edit, :show, :update, :destroy]
+
 
   def index
      if logged_in?
-      # ログインユーザのIDで登録されたタスクのみを表示
-      @user = current_user
+#      @user = current_user
       @tasks = current_user.tasks.order('created_at DESC').page(params[:page]).per(25)
     end
   end
@@ -28,15 +28,15 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
+#削除    @task = Task.find(params[:id])
   end
 
   def show
-    @task = Task.find(params[:id])
+#削除   @task = Task.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
+#削除    @task = Task.find(params[:id])
     
     if @task.update(task_params)
       flash[:success] = 'タスクは正常に更新されました'
